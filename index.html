@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GM Mídia Digital — Tráfego Pago, SDR com IA e Automação Comercial</title>
+<meta name="description" content="Agência de tráfego pago, SDR com Inteligência Artificial e automação comercial. Gere leads qualificados, atenda em segundos e agende reuniões no automático, 24h por dia." />
+<link rel="canonical" href="https://SEU-DOMINIO.com.br/" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:url" content="https://SEU-DOMINIO.com.br/" />
+<meta property="og:site_name" content="GM Mídia Digital" />
+<meta property="og:title" content="Transformamos Cliques em Clientes com IA e Tráfego Pago" />
+<meta property="og:description" content="Automatize seu comercial, gere mais oportunidades e venda todos os dias com Inteligência Artificial e tráfego pago." />
+<meta property="og:image" content="https://SEU-DOMINIO.com.br/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="robots" content="index, follow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"ProfessionalService","name":"GM Mídia Digital","url":"https://SEU-DOMINIO.com.br","email":"gmmidia4@gmail.com","telephone":"+55 48 99604-8543","description":"Tráfego pago, SDR com Inteligência Artificial e automação comercial para empresas que precisam vender todos os dias.","address":{"@type":"PostalAddress","addressLocality":"Tubarão","addressRegion":"SC","addressCountry":"BR"},"areaServed":"BR","priceRange":"$$"},
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"O SDR IA realmente parece humano na conversa?","acceptedAnswer":{"@type":"Answer","text":"Sim. O agente é treinado com o tom de voz, os serviços e as objeções reais do seu negócio. Ele conduz a conversa de forma natural no WhatsApp, entende contexto, responde dúvidas e sabe quando passar o lead para um humano."}},
+{"@type":"Question","name":"Em quanto tempo começo a ver resultados?","acceptedAnswer":{"@type":"Answer","text":"As campanhas e o SDR IA entram no ar nas primeiras 2 semanas. Os primeiros leads chegam já nos primeiros dias de mídia ativa, e a otimização contínua melhora o custo por lead e a taxa de agendamento mês a mês."}},
+{"@type":"Question","name":"Funciona para o meu segmento?","acceptedAnswer":{"@type":"Answer","text":"Atendemos clínicas, imobiliárias, escritórios de advocacia, prestadores de serviço e e-commerces. Se o seu negócio depende de gerar e atender leads para vender, a estrutura se aplica."}},
+{"@type":"Question","name":"Preciso trocar meu CRM ou meu número de WhatsApp?","acceptedAnswer":{"@type":"Answer","text":"Não. Integramos com os principais CRMs do mercado e trabalhamos com a API oficial do WhatsApp no seu próprio número."}},
+{"@type":"Question","name":"Qual é o investimento mínimo?","acceptedAnswer":{"@type":"Answer","text":"O investimento varia conforme o escopo: verba de mídia, volume de atendimento e automações necessárias. No diagnóstico gratuito apresentamos o plano e o orçamento exatos para o seu cenário, sem compromisso."}},
+{"@type":"Question","name":"E se o lead fizer uma pergunta que a IA não sabe responder?","acceptedAnswer":{"@type":"Answer","text":"O agente transfere a conversa para o seu time com todo o contexto registrado. A conversa, a qualificação e o histórico ficam salvos no CRM."}}
+]}]
+</script>
+<style>
+:root{
+  --ink:#05060A;--soft:#0B0D14;--raised:#10131D;--line:rgba(255,255,255,.08);
+  --electric:#2E6BFF;--esoft:#5B8CFF;--cyan:#22D3EE;--mist:#9AA3B2;--snow:#F4F6FB;
+  --grad:linear-gradient(135deg,#2E6BFF 0%,#22D3EE 100%);
+  --gradtext:linear-gradient(92deg,#fff 0%,#9DB8FF 55%,#22D3EE 100%);
+  --glow:0 0 60px -12px rgba(46,107,255,.45);
+  --card:0 1px 0 rgba(255,255,255,.05) inset,0 24px 60px -28px rgba(0,0,0,.7);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--snow);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
+::selection{background:rgba(46,107,255,.4)}
+img,svg{display:block}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+.display{font-family:'Sora',sans-serif;letter-spacing:-.02em}
+.mono{font-family:'JetBrains Mono',monospace}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.22em;color:var(--esoft)}
+.gradtext{background:var(--gradtext);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card{border:1px solid var(--line);background:var(--soft);border-radius:18px;box-shadow:var(--card)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border-radius:999px;padding:.9rem 1.8rem;font-size:14px;font-weight:600;transition:transform .3s,background .3s,border-color .3s}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:var(--glow)}
+.btn-primary:hover{transform:scale(1.03)}
+.btn-ghost{border:1px solid var(--line);background:rgba(255,255,255,.03)}
+.btn-ghost:hover{border-color:rgba(46,107,255,.6);background:rgba(46,107,255,.1)}
+.btn:focus-visible,a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--electric);outline-offset:2px}
+section{padding:6rem 0}
+.sec-head{max-width:42rem;margin:0 auto;text-align:center}
+.sec-head h2{font-family:'Sora',sans-serif;font-size:clamp(1.8rem,4vw,2.75rem);font-weight:600;line-height:1.15;letter-spacing:-.02em;margin-top:1rem}
+.sec-head p{margin-top:1.2rem;color:var(--mist);font-size:1.05rem}
+/* reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+/* header */
+header{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,border .3s;border-bottom:1px solid transparent}
+header.scrolled{background:rgba(5,6,10,.82);backdrop-filter:blur(16px);border-bottom-color:var(--line)}
+.nav{height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:.55rem;font-family:'Sora',sans-serif;font-weight:700;font-size:1.1rem}
+.logo b{display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--grad);font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0;color:#fff}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{font-size:14px;color:var(--mist);transition:color .25s}
+.nav-links a:hover{color:var(--snow)}
+.nav .btn-primary{padding:.65rem 1.3rem;font-size:13px}
+.burger{display:none;width:40px;height:40px;border:1px solid var(--line);border-radius:10px;place-items:center}
+.mobile-menu{display:none;border-bottom:1px solid var(--line);background:rgba(5,6,10,.95);backdrop-filter:blur(16px)}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;padding:.85rem 1rem;border-radius:10px;font-size:14px;color:var(--mist)}
+.mobile-menu a:hover{background:rgba(255,255,255,.05);color:var(--snow)}
+.mobile-menu .btn-primary{margin:1rem;display:flex;color:#fff}
+/* hero */
+.hero{position:relative;padding:9.5rem 0 5rem;overflow:hidden}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 0%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 50% 0%,#000 30%,transparent 75%);pointer-events:none}
+.hero-glow{position:absolute;left:50%;top:-220px;width:720px;height:480px;transform:translateX(-50%);border-radius:50%;background:rgba(46,107,255,.2);filter:blur(140px);pointer-events:none}
+.hero-grid{position:relative;display:grid;gap:3.5rem;align-items:center;grid-template-columns:1.1fr .9fr}
+.badge{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(46,107,255,.3);background:rgba(46,107,255,.1);border-radius:999px;padding:.5rem 1rem}
+.hero h1{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(2.3rem,5.4vw,3.8rem);line-height:1.08;letter-spacing:-.02em;margin-top:1.4rem}
+.hero .sub{margin-top:1.4rem;max-width:34rem;color:var(--mist);font-size:1.1rem}
+.hero-ctas{margin-top:2.2rem;display:flex;flex-wrap:wrap;gap:1rem}
+.hero-tags{margin-top:2rem;font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--mist)}
+/* chat mockup */
+.chat-wrap{position:relative;max-width:440px;margin:0 auto;width:100%}
+.chat{overflow:hidden}
+.chat-head{display:flex;align-items:center;gap:.8rem;border-bottom:1px solid var(--line);padding:1rem 1.25rem}
+.chat-head .av{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--grad)}
+.chat-head p{font-size:13px}
+.chat-head .st{display:flex;align-items:center;gap:.4rem;font-size:11px;color:var(--mist)}
+.dot{width:6px;height:6px;border-radius:50%;background:#34d399;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.chat-body{min-height:340px;display:flex;flex-direction:column;gap:.7rem;padding:1.25rem}
+.msg{max-width:85%;padding:.65rem 1rem;border-radius:16px;font-size:13px;line-height:1.55;opacity:0;transform:translateY(12px) scale(.97);transition:opacity .35s,transform .35s}
+.msg.show{opacity:1;transform:none}
+.msg.ia{align-self:flex-start;background:rgba(46,107,255,.15);border-bottom-left-radius:4px}
+.msg.lead{align-self:flex-end;background:rgba(255,255,255,.06);border-bottom-right-radius:4px}
+.float{position:absolute;display:flex;align-items:center;gap:.7rem;padding:.75rem 1rem;animation:floaty 5s ease-in-out infinite}
+.float .t1{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500}
+.float .t2{font-size:11px;color:var(--mist)}
+.f1{left:-1.5rem;top:2.5rem}
+.f2{right:-1rem;bottom:3rem;animation-delay:.8s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+/* stats */
+.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(11,13,20,.5);padding:3.5rem 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.stats-grid .n{font-family:'JetBrains Mono',monospace;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:500;font-variant-numeric:tabular-nums}
+.stats-grid .l{margin-top:.4rem;font-size:14px;color:var(--mist)}
+/* about */
+.about-grid{display:grid;gap:3.5rem;align-items:center;grid-template-columns:1fr 1fr}
+.about h2{font-family:'Sora',sans-serif;font-size:clamp(1.8rem,4vw,2.75rem);font-weight:600;line-height:1.15;letter-spacing:-.02em;margin-top:1rem}
+.about .txt{margin-top:1.4rem;color:var(--mist);font-size:1.05rem}
+.note{display:inline-flex;align-items:center;gap:.8rem;margin-top:2rem;border:1px solid var(--line);background:var(--soft);border-radius:16px;padding:1rem 1.25rem;font-size:14px;color:var(--mist)}
+.note b{color:var(--snow)}
+.points{display:grid;gap:1rem}
+.point{display:flex;gap:1.2rem;padding:1.5rem;transition:border-color .3s}
+.point:hover{border-color:rgba(46,107,255,.4)}
+.icon-tile{display:grid;place-items:center;flex-shrink:0;width:44px;height:44px;border-radius:12px;background:rgba(46,107,255,.15);color:var(--esoft)}
+.point h3{font-family:'Sora',sans-serif;font-size:1rem;font-weight:600}
+.point p{margin-top:.35rem;font-size:14px;color:var(--mist)}
+/* services */
+.svc-grid{margin-top:3.5rem;display:grid;gap:1.25rem;grid-template-columns:1fr 1fr}
+.svc{position:relative;overflow:hidden;padding:2rem;height:100%;transition:transform .3s,border-color .3s,box-shadow .3s}
+.svc:hover{transform:translateY(-4px);border-color:rgba(46,107,255,.4);box-shadow:var(--glow)}
+.svc-top{display:flex;justify-content:space-between;align-items:flex-start}
+.svc .icon-grad{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:var(--grad);color:#fff}
+.svc .arrow{color:var(--mist);transition:transform .3s,color .3s}
+.svc:hover .arrow{transform:translate(2px,-2px);color:var(--esoft)}
+.svc h3{font-family:'Sora',sans-serif;font-size:1.25rem;font-weight:600;margin-top:1.4rem}
+.svc>p{margin-top:.6rem;font-size:14px;color:var(--mist)}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem}
+.chips li{border:1px solid var(--line);background:rgba(255,255,255,.03);border-radius:999px;padding:.35rem .8rem;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mist)}
+/* demo */
+.demo{position:relative;overflow:hidden}
+.demo::before{content:"";position:absolute;left:50%;top:0;width:66%;height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(46,107,255,.6),transparent)}
+.panel{max-width:980px;margin:3.5rem auto 0;overflow:hidden}
+.panel-bar{display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--line);padding:.85rem 1.25rem}
+.panel-bar i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.15)}
+.panel-bar .ttl{margin-left:.7rem;font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--mist)}
+.panel-bar .live{margin-left:auto;display:flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:11px;color:#34d399}
+.panel-grid{display:grid;gap:1.5rem;padding:1.75rem;grid-template-columns:1.2fr .8fr}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem}
+.kpi{border:1px solid var(--line);background:rgba(255,255,255,.02);border-radius:14px;padding:1rem}
+.kpi svg{color:var(--esoft)}
+.kpi .v{margin-top:.7rem;font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:500;font-variant-numeric:tabular-nums}
+.kpi .l{margin-top:.15rem;font-size:11px;line-height:1.3;color:var(--mist)}
+.kpi .d{margin-top:.3rem;font-family:'JetBrains Mono',monospace;font-size:10px;color:#34d399}
+.chart{margin-top:1.5rem;border:1px solid var(--line);background:rgba(255,255,255,.02);border-radius:14px;padding:1.25rem}
+.chart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;font-size:14px;font-weight:500}
+.chart-head span{display:flex;gap:.3rem;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#34d399}
+.bars{display:flex;align-items:flex-end;gap:.55rem;height:140px}
+.barcol{flex:1;display:flex;flex-direction:column;align-items:center;gap:.35rem;height:100%;justify-content:flex-end}
+.bar{width:100%;min-height:4px;height:0;border-radius:6px 6px 0 0;background:var(--grad);transition:height .9s cubic-bezier(.22,1,.36,1)}
+.barcol span{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mist)}
+.feedbox{border:1px solid var(--line);background:rgba(255,255,255,.02);border-radius:14px;padding:1.25rem}
+.feedbox>p{font-size:14px;font-weight:500;margin-bottom:1rem}
+#feed{display:flex;flex-direction:column;gap:.6rem}
+.frow{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);background:rgba(255,255,255,.02);border-radius:12px;padding:.7rem 1rem;animation:feedin .4s both}
+@keyframes feedin{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.frow .nm{font-size:13px;font-weight:500}
+.frow .or{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mist)}
+.frow .st{font-family:'JetBrains Mono',monospace;font-size:11px}
+.feed-meta{margin-top:1rem;border-top:1px solid var(--line);padding-top:1rem;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mist)}
+.feed-meta b{color:var(--snow);font-weight:500}
+.demo-note{margin-top:2rem;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--mist)}
+/* timeline */
+.timeline{position:relative;max-width:46rem;margin:4rem auto 0}
+.timeline::before{content:"";position:absolute;left:27px;top:24px;bottom:24px;width:1px;background:linear-gradient(180deg,var(--electric),rgba(34,211,238,.6),transparent)}
+.step{position:relative;display:flex;gap:1.5rem;padding-bottom:2.5rem}
+.step:last-child{padding-bottom:0}
+.step .num{position:relative;z-index:1;display:grid;place-items:center;flex-shrink:0;width:56px;height:56px;border-radius:16px;border:1px solid rgba(46,107,255,.4);background:var(--raised);box-shadow:var(--glow);color:var(--esoft)}
+.step .et{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--esoft)}
+.step h3{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:600;margin-top:.25rem}
+.step p{margin-top:.35rem;max-width:28rem;font-size:14px;color:var(--mist)}
+/* benefits */
+.benefits{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(11,13,20,.4)}
+.ben-grid{margin-top:3.5rem;display:grid;gap:1.25rem;grid-template-columns:repeat(3,1fr)}
+.ben{padding:1.75rem;height:100%;transition:border-color .3s}
+.ben:hover{border-color:rgba(46,107,255,.4)}
+.ben svg{color:var(--cyan)}
+.ben h3{font-family:'Sora',sans-serif;font-size:1rem;font-weight:600;margin-top:1rem}
+.ben p{margin-top:.5rem;font-size:14px;color:var(--mist)}
+/* cases */
+.case-grid{margin-top:3.5rem;display:grid;gap:1.25rem;grid-template-columns:repeat(3,1fr)}
+.case{display:flex;flex-direction:column;padding:2rem;height:100%;transition:transform .3s,border-color .3s}
+.case:hover{transform:translateY(-4px);border-color:rgba(46,107,255,.4)}
+.case .seg{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--esoft)}
+.case h3{font-family:'Sora',sans-serif;font-size:1.25rem;font-weight:600;margin-top:.5rem}
+.case .res{margin-top:.7rem;font-size:14px;color:var(--mist)}
+.case dl{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:auto;border-top:1px solid var(--line);padding-top:1.4rem}
+.case dt{font-size:11px;color:var(--mist)}
+.case dd{margin-top:.25rem;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500}
+.case .gr{display:flex;align-items:center;gap:.4rem;margin-top:1.2rem;font-family:'JetBrains Mono',monospace;font-size:11px;color:#34d399}
+/* testimonials */
+.testi{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(11,13,20,.4)}
+.t-wrap{max-width:46rem;margin:3.5rem auto 0}
+.t-card{position:relative;min-height:300px;padding:3rem;overflow:hidden}
+.t-quote{color:rgba(46,107,255,.5)}
+blockquote{margin-top:1.5rem;font-size:1.2rem;line-height:1.6}
+.t-fig{display:flex;align-items:center;gap:1rem;margin-top:2rem}
+.t-fig .av{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--grad);font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;color:#fff}
+.t-fig .nm{font-weight:600}
+.t-fig .rl{font-size:14px;color:var(--mist)}
+.t-fig .tag{margin-left:auto;border:1px solid rgba(52,211,153,.3);background:rgba(52,211,153,.1);border-radius:999px;padding:.4rem .9rem;font-family:'JetBrains Mono',monospace;font-size:11px;color:#6ee7b7}
+.t-card .slide{transition:opacity .35s,transform .35s}
+.t-card .slide.out{opacity:0;transform:translateX(-30px)}
+.t-controls{display:flex;align-items:center;justify-content:space-between;margin-top:1.5rem}
+.dots{display:flex;gap:.5rem}
+.dots button{height:6px;width:12px;border-radius:999px;background:rgba(255,255,255,.15);transition:all .3s}
+.dots button:hover{background:rgba(255,255,255,.3)}
+.dots button.on{width:32px;background:var(--electric)}
+.arrows{display:flex;gap:.5rem}
+.arrows button{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);transition:border-color .3s,background .3s}
+.arrows button:hover{border-color:rgba(46,107,255,.5);background:rgba(46,107,255,.1)}
+/* faq */
+.faq-list{max-width:46rem;margin:3rem auto 0;display:flex;flex-direction:column;gap:.75rem}
+details{border:1px solid var(--line);background:var(--soft);border-radius:18px;box-shadow:var(--card);padding:0 1.5rem;transition:border-color .3s}
+details[open]{border-color:rgba(46,107,255,.4)}
+summary{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.25rem 0;font-size:15px;font-weight:600;cursor:pointer;list-style:none;transition:color .25s}
+summary::-webkit-details-marker{display:none}
+summary:hover{color:var(--esoft)}
+summary .pl{flex-shrink:0;color:var(--esoft);transition:transform .3s}
+details[open] summary .pl{transform:rotate(45deg)}
+details .ans{padding-bottom:1.5rem;font-size:14px;line-height:1.65;color:var(--mist)}
+/* cta */
+.cta{position:relative;overflow:hidden}
+.cta-glow{position:absolute;left:50%;top:50%;width:760px;height:420px;transform:translate(-50%,-50%);border-radius:50%;background:rgba(46,107,255,.15);filter:blur(140px);pointer-events:none}
+.cta-card{position:relative;max-width:56rem;margin:0 auto;padding:4rem 2.5rem;text-align:center;overflow:hidden}
+.cta-card h2{font-family:'Sora',sans-serif;font-size:clamp(1.9rem,4.5vw,3rem);font-weight:600;line-height:1.15;letter-spacing:-.02em;margin:1rem auto 0;max-width:36rem}
+.cta-card .sub{margin:1.2rem auto 0;max-width:32rem;color:var(--mist);font-size:1.05rem}
+.cta-card .btn{margin-top:2.2rem;padding:1.05rem 2.3rem;font-size:1rem}
+.cta-card .sm{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:1.4rem;font-size:12px;color:var(--mist)}
+.cta-card .sm svg{color:#34d399}
+/* footer */
+footer{border-top:1px solid var(--line);background:rgba(11,13,20,.6)}
+.f-grid{display:grid;gap:3rem;padding:4rem 0;grid-template-columns:1.4fr 1fr 1fr}
+.f-grid .desc{margin-top:1rem;max-width:22rem;font-size:14px;color:var(--mist)}
+.socials{display:flex;gap:.7rem;margin-top:1.5rem}
+.socials a{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);transition:border-color .3s,background .3s}
+.socials a:hover{border-color:rgba(46,107,255,.5);background:rgba(46,107,255,.1)}
+.f-grid h4{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:400;text-transform:uppercase;letter-spacing:.18em;color:var(--mist)}
+.f-grid ul{margin-top:1rem;display:flex;flex-direction:column;gap:.7rem;font-size:14px;color:var(--mist)}
+.f-grid ul a:hover{color:var(--snow)}
+.f-grid li{display:flex;gap:.6rem;align-items:flex-start}
+.f-grid li svg{flex-shrink:0;margin-top:2px;color:var(--esoft)}
+.f-bottom{border-top:1px solid var(--line)}
+.f-bottom .container{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;justify-content:space-between;padding-top:1.5rem;padding-bottom:1.5rem;font-size:12px;color:var(--mist)}
+.f-bottom a:hover{color:var(--snow)}
+.f-legal{display:flex;gap:1.5rem}
+/* responsive */
+@media(max-width:1024px){
+  .nav-links,.nav .btn-primary{display:none}
+  .burger{display:grid}
+  .hero-grid,.about-grid{grid-template-columns:1fr}
+  .panel-grid{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  section{padding:4.5rem 0}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:2.5rem 1rem}
+  .svc-grid,.case-grid{grid-template-columns:1fr}
+  .ben-grid{grid-template-columns:1fr 1fr}
+  .kpis{grid-template-columns:1fr 1fr}
+  .float{display:none}
+  .barcol span{display:none}
+  .t-card{padding:2rem}
+  .t-fig .tag{display:none}
+  .f-grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){.ben-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+  .msg{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="container nav">
+    <a href="#" class="logo"><b>GM</b>GM Mídia Digital</a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#servicos">Serviços</a>
+      <a href="#plataforma">Plataforma</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#cases">Cases</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#cta" class="btn btn-primary">Solicitar Diagnóstico
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+  <nav class="mobile-menu" id="mmenu" aria-label="Menu móvel">
+    <div class="container" style="padding-top:.75rem;padding-bottom:1rem">
+      <a href="#servicos">Serviços</a>
+      <a href="#plataforma">Plataforma</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#cases">Cases</a>
+      <a href="#faq">FAQ</a>
+      <a href="#cta" class="btn btn-primary">Solicitar Diagnóstico</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="container hero-grid">
+    <div>
+      <p class="badge eyebrow">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 11-12h-7l0-8z"/></svg>
+        Tráfego pago + SDR IA + Automação
+      </p>
+      <h1>Transformamos cliques em clientes com <span class="gradtext">IA e Tráfego Pago</span></h1>
+      <p class="sub">Automatize seu comercial, gere mais oportunidades e venda todos os dias utilizando Inteligência Artificial e estratégias avançadas de aquisição.</p>
+      <div class="hero-ctas">
+        <a href="#cta" class="btn btn-primary">Solicitar Diagnóstico
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#plataforma" class="btn btn-ghost">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4V8z"/></svg>
+          Ver Demonstração
+        </a>
+      </div>
+      <p class="hero-tags">Clínicas · Imobiliárias · Advogados · Serviços · E-commerce</p>
+    </div>
+
+    <div class="chat-wrap">
+      <div class="card chat">
+        <div class="chat-head">
+          <span class="av">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 6V2H8"/><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M2 12h2M20 12h2M9 11v2M15 11v2"/></svg>
+          </span>
+          <div>
+            <p style="font-weight:600">SDR IA — WhatsApp</p>
+            <p class="st"><span class="dot"></span>respondendo em 3s</p>
+          </div>
+          <span class="mono" style="margin-left:auto;font-size:10px;letter-spacing:.18em;color:var(--mist)">24/7</span>
+        </div>
+        <div class="chat-body" id="chat">
+          <p class="msg lead">Oi, vi o anúncio de vocês. Quanto custa o tratamento?</p>
+          <p class="msg ia">Olá, Marina! 👋 Posso te passar os valores certinhos. Você busca avaliação para você ou outra pessoa?</p>
+          <p class="msg lead">Para mim. Pode ser essa semana?</p>
+          <p class="msg ia">Perfeito! Tenho quinta às 10h ou sexta às 15h30. Qual prefere?</p>
+          <p class="msg lead">Quinta às 10h 🙌</p>
+          <p class="msg ia">Agendado ✅ Te enviei a confirmação e o lembrete já está programado.</p>
+        </div>
+      </div>
+      <div class="card float f1">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg>
+        <div><p class="t1">+38 reuniões</p><p class="t2">agendadas esta semana</p></div>
+      </div>
+      <div class="card float f2">
+        <span class="dot" style="width:8px;height:8px"></span>
+        <div><p class="t1">CPL R$ 7,40</p><p class="t2">Meta Ads · hoje</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROVA SOCIAL -->
+<section class="stats" style="padding:3.5rem 0">
+  <div class="container stats-grid">
+    <div class="reveal"><p class="n" data-count="500000" data-prefix="+">+0</p><p class="l">leads gerados</p></div>
+    <div class="reveal"><p class="n" data-count="20" data-prefix="+R$ " data-suffix=" mi">+R$ 0 mi</p><p class="l">em vendas impulsionadas</p></div>
+    <div class="reveal"><p class="n" data-count="100" data-prefix="+">+0</p><p class="l">empresas atendidas</p></div>
+    <div class="reveal"><p class="n" data-count="95" data-suffix="%">0%</p><p class="l">de satisfação</p></div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre" class="about">
+  <div class="container about-grid">
+    <div class="reveal">
+      <p class="eyebrow">SDR com Inteligência Artificial</p>
+      <h2>Sua equipe comercial trabalha <span class="gradtext">24h por dia?</span></h2>
+      <p class="txt">A nossa trabalha. O SDR IA assume o primeiro contato do seu funil: responde instantaneamente, qualifica cada lead com critérios definidos junto com você e agenda reuniões direto no calendário do seu time — sem intervenção humana e sem deixar oportunidade esperando.</p>
+      <p class="note">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <span><b>78% dos negócios</b> ficam com quem responde primeiro. Com IA, esse alguém é sempre você.</span>
+      </p>
+    </div>
+    <div class="points">
+      <div class="card point reveal">
+        <span class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg></span>
+        <div><h3>Resposta em segundos</h3><p>Cada lead que chega do tráfego é atendido na hora, antes de esfriar — inclusive de madrugada, no fim de semana e no feriado.</p></div>
+      </div>
+      <div class="card point reveal">
+        <span class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg></span>
+        <div><h3>Qualificação automática</h3><p>A IA conduz a conversa, entende o contexto, faz as perguntas certas e separa curiosos de compradores reais.</p></div>
+      </div>
+      <div class="card point reveal">
+        <span class="icon-tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg></span>
+        <div><h3>Agendamento sem intervenção</h3><p>Reuniões e avaliações entram direto na agenda do seu time, com confirmação e lembrete automáticos.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div class="container">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Serviços</p>
+      <h2>Aquisição e conversão sob o mesmo teto</h2>
+      <p>Do anúncio à reunião agendada, cada etapa do seu funil é construída, operada e otimizada por um único time.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="card svc reveal">
+        <div class="svc-top">
+          <span class="icon-grad"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 11 18-7-7 18-2.5-7.5L3 11z"/></svg></span>
+          <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        </div>
+        <h3>Gestão de Tráfego Pago</h3>
+        <p>Campanhas de aquisição com foco em custo por lead e retorno, não em métricas de vaidade.</p>
+        <ul class="chips"><li>Meta Ads</li><li>Google Ads</li><li>YouTube Ads</li><li>TikTok Ads</li></ul>
+      </article>
+      <article class="card svc reveal">
+        <div class="svc-top">
+          <span class="icon-grad"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6V2H8"/><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M2 12h2M20 12h2M9 11v2M15 11v2"/></svg></span>
+          <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        </div>
+        <h3>SDR com IA</h3>
+        <p>Um vendedor digital que nunca dorme, treinado com o discurso e os critérios do seu negócio.</p>
+        <ul class="chips"><li>Atendimento automático</li><li>Qualificação</li><li>Follow-up</li><li>Agendamento</li><li>WhatsApp</li></ul>
+      </article>
+      <article class="card svc reveal">
+        <div class="svc-top">
+          <span class="icon-grad"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="8" height="8" rx="2"/><rect x="14" y="14" width="8" height="8" rx="2"/><path d="M10 6h7a1 1 0 0 1 1 1v7M6 10v7a1 1 0 0 0 1 1h7"/></svg></span>
+          <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        </div>
+        <h3>Automação Comercial</h3>
+        <p>Seu processo de vendas rodando em trilhos: nada se perde entre o clique e o contrato.</p>
+        <ul class="chips"><li>CRM</li><li>Pipeline</li><li>Disparos</li><li>Nutrição</li><li>Integrações</li></ul>
+      </article>
+      <article class="card svc reveal">
+        <div class="svc-top">
+          <span class="icon-grad"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span>
+          <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        </div>
+        <h3>Desenvolvimento de Funis</h3>
+        <p>Páginas e jornadas desenhadas para converter — testadas, medidas e otimizadas continuamente.</p>
+        <ul class="chips"><li>Landing Pages</li><li>Captação</li><li>Conversão</li><li>Otimização</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- DEMONSTRAÇÃO -->
+<section id="plataforma" class="demo">
+  <div class="container">
+    <div class="sec-head reveal">
+      <p class="eyebrow">A plataforma em ação</p>
+      <h2>Tudo o que acontece no seu funil, <span class="gradtext">em tempo real</span></h2>
+      <p>Leads entrando, conversas sendo qualificadas, reuniões caindo na agenda e o resultado consolidado em um único painel.</p>
+    </div>
+
+    <div class="card panel reveal">
+      <div class="panel-bar">
+        <i></i><i></i><i></i>
+        <span class="ttl">painel.gmmidia — visão comercial</span>
+        <span class="live"><span class="dot"></span>ao vivo</span>
+      </div>
+      <div class="panel-grid">
+        <div>
+          <div class="kpis">
+            <div class="kpi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><p class="v">142</p><p class="l">Leads hoje</p><p class="d">+18%</p></div>
+            <div class="kpi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z"/><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1"/></svg><p class="v">37</p><p class="l">Conversas ativas</p><p class="d">+9%</p></div>
+            <div class="kpi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76z"/><path d="m9 12 2 2 4-4"/></svg><p class="v">61</p><p class="l">Qualificados</p><p class="d">+24%</p></div>
+            <div class="kpi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><p class="v">19</p><p class="l">Reuniões agendadas</p><p class="d">+12%</p></div>
+          </div>
+          <div class="chart">
+            <div class="chart-head">
+              <p>Reuniões agendadas por mês</p>
+              <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></svg>+195% em 12 meses</span>
+            </div>
+            <div class="bars" id="bars">
+              <div class="barcol"><div class="bar" data-h="34"></div><span>Jul</span></div>
+              <div class="barcol"><div class="bar" data-h="47"></div><span>Ago</span></div>
+              <div class="barcol"><div class="bar" data-h="41"></div><span>Set</span></div>
+              <div class="barcol"><div class="bar" data-h="60"></div><span>Out</span></div>
+              <div class="barcol"><div class="bar" data-h="53"></div><span>Nov</span></div>
+              <div class="barcol"><div class="bar" data-h="71"></div><span>Dez</span></div>
+              <div class="barcol"><div class="bar" data-h="64"></div><span>Jan</span></div>
+              <div class="barcol"><div class="bar" data-h="77"></div><span>Fev</span></div>
+              <div class="barcol"><div class="bar" data-h="68"></div><span>Mar</span></div>
+              <div class="barcol"><div class="bar" data-h="89"></div><span>Abr</span></div>
+              <div class="barcol"><div class="bar" data-h="82"></div><span>Mai</span></div>
+              <div class="barcol"><div class="bar" data-h="100"></div><span>Jun</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="feedbox">
+          <p>Atividade do SDR IA</p>
+          <div id="feed" aria-live="polite"></div>
+          <p class="feed-meta">Tempo médio de resposta: <b>3,2s</b> · Taxa de qualificação: <b>43%</b></p>
+        </div>
+      </div>
+    </div>
+    <p class="demo-note reveal">Dados ilustrativos da plataforma · Relatórios reais entregues semanalmente</p>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona">
+  <div class="container">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Como funciona</p>
+      <h2>Do clique ao contrato, em 5 etapas</h2>
+      <p>Uma esteira comercial contínua, onde cada etapa alimenta a próxima — todos os dias, sem depender de ninguém estar online.</p>
+    </div>
+    <ol class="timeline">
+      <li class="step reveal">
+        <span class="num"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 9l5 12 1.8-5.2L21 14 9 9z"/><path d="M7.2 2.2 8 5.1M5.1 8l-2.9-.8M14 4.1 12 6M6 12l-1.9 2"/></svg></span>
+        <div><p class="et">Etapa 1</p><h3>Tráfego gera leads</h3><p>Campanhas segmentadas levam o público certo para páginas feitas para converter.</p></div>
+      </li>
+      <li class="step reveal">
+        <span class="num"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg></span>
+        <div><p class="et">Etapa 2</p><h3>IA responde instantaneamente</h3><p>Em segundos, o lead recebe o primeiro contato no WhatsApp — sem fila, sem espera.</p></div>
+      </li>
+      <li class="step reveal">
+        <span class="num"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 17 2 2 4-4M3 7l2 2 4-4M13 6h8M13 12h8M13 18h8"/></svg></span>
+        <div><p class="et">Etapa 3</p><h3>IA qualifica o lead</h3><p>A conversa identifica orçamento, urgência e perfil, com critérios definidos com você.</p></div>
+      </li>
+      <li class="step reveal">
+        <span class="num"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/></svg></span>
+        <div><p class="et">Etapa 4</p><h3>IA agenda reuniões</h3><p>Leads prontos para comprar entram direto na agenda do seu time, confirmados.</p></div>
+      </li>
+      <li class="step reveal">
+        <span class="num"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m11 17 2 2a1 1 0 1 0 3-3M14 14l2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4M21 3l1 11h-2M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3M3 4h8"/></svg></span>
+        <div><p class="et">Etapa 5</p><h3>Cliente fecha vendas</h3><p>Seu comercial recebe oportunidades quentes e foca no que importa: fechar.</p></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- BENEFÍCIOS -->
+<section class="benefits">
+  <div class="container">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Benefícios</p>
+      <h2>O que muda quando a IA assume o primeiro contato</h2>
+    </div>
+    <div class="ben-grid">
+      <div class="card ben reveal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg><h3>Menos custo operacional</h3><p>Um SDR IA custa uma fração de um time de pré-vendas — e não tira férias.</p></div>
+      <div class="card ben reveal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/></svg><h3>Mais reuniões</h3><p>Agenda cheia de oportunidades qualificadas, semana após semana.</p></div>
+      <div class="card ben reveal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg><h3>Mais velocidade</h3><p>Resposta em segundos, quando o interesse do lead está no pico.</p></div>
+      <div class="card ben reveal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg><h3>Mais conversões</h3><p>Lead bem atendido e bem qualificado converte mais — simples assim.</p></div>
+      <div class="card ben reveal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg><h3>Atendimento 24h</h3><p>Madrugada, fim de semana, feriado: nenhum lead fica sem resposta.</p></div>
+      <div class="card ben reveal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg><h3>Escalabilidade</h3><p>Dobrou o tráfego? A operação acompanha sem contratar ninguém.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section id="cases">
+  <div class="container">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Cases</p>
+      <h2>Resultados que pagam a operação <span class="gradtext">muitas vezes</span></h2>
+      <p>Cenários representativos de clientes em diferentes segmentos. Cada operação é desenhada para o contexto do negócio.</p>
+    </div>
+    <div class="case-grid">
+      <article class="card case reveal">
+        <p class="seg">Estética e Saúde</p>
+        <h3>Clínica Vitalle</h3>
+        <p class="res">Agenda lotada com 3 semanas de antecedência</p>
+        <dl><div><dt>ROI</dt><dd>6,8x</dd></div><div><dt>Leads/mês</dt><dd>1.240</dd></div><div><dt>Faturamento</dt><dd>+R$ 380 mil/mês</dd></div></dl>
+        <p class="gr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></svg>Crescimento sustentado mês a mês</p>
+      </article>
+      <article class="card case reveal">
+        <p class="seg">Imobiliária</p>
+        <h3>Atlas Imóveis</h3>
+        <p class="res">Visitas agendadas no automático, 7 dias por semana</p>
+        <dl><div><dt>ROI</dt><dd>5,2x</dd></div><div><dt>Leads/mês</dt><dd>860</dd></div><div><dt>Faturamento</dt><dd>+R$ 1,1 mi em VGV</dd></div></dl>
+        <p class="gr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></svg>Crescimento sustentado mês a mês</p>
+      </article>
+      <article class="card case reveal">
+        <p class="seg">Advocacia</p>
+        <h3>Borges &amp; Lacerda</h3>
+        <p class="res">Triagem jurídica automática e consultas qualificadas</p>
+        <dl><div><dt>ROI</dt><dd>4,4x</dd></div><div><dt>Leads/mês</dt><dd>410</dd></div><div><dt>Faturamento</dt><dd>+R$ 140 mil/mês</dd></div></dl>
+        <p class="gr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></svg>Crescimento sustentado mês a mês</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="testi">
+  <div class="container">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Depoimentos</p>
+      <h2>Quem opera com a gente, recomenda</h2>
+    </div>
+    <div class="t-wrap reveal">
+      <div class="card t-card">
+        <svg class="t-quote" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+        <div class="slide" id="t-slide">
+          <blockquote id="t-quote"></blockquote>
+          <figure class="t-fig">
+            <span class="av" id="t-av"></span>
+            <div><p class="nm" id="t-name"></p><p class="rl" id="t-role"></p></div>
+            <p class="tag" id="t-tag"></p>
+          </figure>
+        </div>
+      </div>
+      <div class="t-controls">
+        <div class="dots" id="t-dots"></div>
+        <div class="arrows">
+          <button id="t-prev" aria-label="Depoimento anterior"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button>
+          <button id="t-next" aria-label="Próximo depoimento"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Perguntas frequentes</p>
+      <h2>O que você precisa saber antes de começar</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details><summary>O SDR IA realmente parece humano na conversa?<svg class="pl" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></summary><p class="ans">Sim. O agente é treinado com o tom de voz, os serviços e as objeções reais do seu negócio. Ele conduz a conversa de forma natural no WhatsApp, entende contexto, responde dúvidas e sabe quando passar o lead para um humano.</p></details>
+      <details><summary>Em quanto tempo começo a ver resultados?<svg class="pl" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></summary><p class="ans">As campanhas e o SDR IA entram no ar nas primeiras 2 semanas. Os primeiros leads chegam já nos primeiros dias de mídia ativa, e a otimização contínua melhora o custo por lead e a taxa de agendamento mês a mês.</p></details>
+      <details><summary>Funciona para o meu segmento?<svg class="pl" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></summary><p class="ans">Atendemos clínicas, imobiliárias, escritórios de advocacia, prestadores de serviço e e-commerces. Se o seu negócio depende de gerar e atender leads para vender, a estrutura se aplica — o que muda é a estratégia, desenhada no diagnóstico.</p></details>
+      <details><summary>Preciso trocar meu CRM ou meu número de WhatsApp?<svg class="pl" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></summary><p class="ans">Não. Integramos com os principais CRMs do mercado e trabalhamos com a API oficial do WhatsApp no seu próprio número, mantendo histórico e identidade da empresa.</p></details>
+      <details><summary>Qual é o investimento mínimo?<svg class="pl" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></summary><p class="ans">O investimento varia conforme o escopo: verba de mídia, volume de atendimento e automações necessárias. No diagnóstico gratuito, apresentamos o plano e o orçamento exatos para o seu cenário, sem compromisso.</p></details>
+      <details><summary>E se o lead fizer uma pergunta que a IA não sabe responder?<svg class="pl" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></summary><p class="ans">O agente transfere a conversa para o seu time com todo o contexto registrado. Nada se perde: a conversa, a qualificação e o histórico ficam salvos no CRM.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta" class="cta">
+  <div class="cta-glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="card cta-card reveal">
+      <div class="bg-grid" aria-hidden="true"></div>
+      <div style="position:relative">
+        <p class="eyebrow">Diagnóstico gratuito</p>
+        <h2>Pronto para transformar seu <span class="gradtext">processo comercial?</span></h2>
+        <p class="sub">Em uma sessão de 30 minutos, mapeamos seu funil atual e mostramos exatamente onde o tráfego pago e o SDR IA podem gerar mais vendas no seu negócio.</p>
+        <a class="btn btn-primary" href="https://wa.me/5548996048543?text=Quero%20um%20diagn%C3%B3stico%20gratuito" target="_blank" rel="noopener noreferrer">Agendar Diagnóstico Gratuito
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <p class="sm">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+          Sem compromisso · Resposta em até 1 dia útil
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container f-grid">
+    <div>
+      <a href="#" class="logo"><b>GM</b>GM Mídia Digital</a>
+      <p class="desc">Tráfego pago, SDR com Inteligência Artificial e automação comercial para empresas que precisam vender todos os dias.</p>
+      <div class="socials">
+        <a href="https://wa.me/5548996048543" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg></a>
+        <a href="https://instagram.com/giovani_faixapreta.ia" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>
+        <a href="mailto:gmmidia4@gmail.com" aria-label="E-mail"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
+      </div>
+    </div>
+    <nav aria-label="Rodapé">
+      <h4>Navegação</h4>
+      <ul>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#plataforma">Plataforma</a></li>
+        <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="#cases">Cases</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h4>Contato</h4>
+      <ul>
+        <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Tubarão — SC</span></li>
+        <li><a href="mailto:gmmidia4@gmail.com">gmmidia4@gmail.com</a></li>
+        <li>+55 48 99604-8543</li>
+      </ul>
+    </div>
+  </div>
+  <div class="f-bottom">
+    <div class="container">
+      <p>© <span id="year"></span> GM Mídia Digital. Todos os direitos reservados.</p>
+      <div class="f-legal">
+        <a href="politica-de-privacidade.html">Política de Privacidade</a>
+        <a href="termos.html">Termos de Uso</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* navbar */
+var hdr = document.getElementById("hdr");
+function onScroll(){ hdr.classList.toggle("scrolled", window.scrollY > 24); }
+window.addEventListener("scroll", onScroll, {passive:true}); onScroll();
+
+/* mobile menu */
+var burger = document.getElementById("burger"), mmenu = document.getElementById("mmenu");
+burger.addEventListener("click", function(){
+  var open = mmenu.classList.toggle("open");
+  burger.setAttribute("aria-expanded", open);
+});
+mmenu.querySelectorAll("a").forEach(function(a){
+  a.addEventListener("click", function(){ mmenu.classList.remove("open"); burger.setAttribute("aria-expanded","false"); });
+});
+
+/* scroll reveal */
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+  });
+}, {rootMargin:"-60px"});
+document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+
+/* counters */
+function fmt(n){ return Math.round(n).toLocaleString("pt-BR"); }
+var cio = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(!e.isIntersecting) return;
+    cio.unobserve(e.target);
+    var el = e.target, to = parseFloat(el.dataset.count),
+        pre = el.dataset.prefix || "", suf = el.dataset.suffix || "";
+    if(reduce){ el.textContent = pre + fmt(to) + suf; return; }
+    var t0 = null, dur = 2000;
+    function tick(t){
+      if(!t0) t0 = t;
+      var p = Math.min((t - t0)/dur, 1);
+      var eased = 1 - Math.pow(1 - p, 4);
+      el.textContent = pre + fmt(to * eased) + suf;
+      if(p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}, {rootMargin:"-40px"});
+document.querySelectorAll("[data-count]").forEach(function(el){ cio.observe(el); });
+
+/* chat */
+var msgs = Array.prototype.slice.call(document.querySelectorAll("#chat .msg"));
+if(reduce){ msgs.forEach(function(m){ m.classList.add("show"); }); }
+else {
+  msgs[0].classList.add("show");
+  var i = 1;
+  var chatTimer = setInterval(function(){
+    if(i >= msgs.length){ clearInterval(chatTimer); return; }
+    msgs[i].classList.add("show"); i++;
+  }, 1400);
+}
+
+/* bars */
+var bio = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(!e.isIntersecting) return;
+    bio.unobserve(e.target);
+    e.target.querySelectorAll(".bar").forEach(function(b, idx){
+      setTimeout(function(){ b.style.height = b.dataset.h + "%"; }, reduce ? 0 : idx * 50);
+    });
+  });
+}, {rootMargin:"-40px"});
+bio.observe(document.getElementById("bars"));
+
+/* lead feed */
+var feedData = [
+  {n:"Marina S.", o:"Meta Ads", s:"Reunião agendada", c:"#34d399"},
+  {n:"Carlos M.", o:"Google Ads", s:"Qualificado", c:"#22D3EE"},
+  {n:"Imob. Litoral", o:"TikTok Ads", s:"Em conversa", c:"#5B8CFF"},
+  {n:"Dra. Fernanda", o:"Meta Ads", s:"Follow-up enviado", c:"#fcd34d"},
+  {n:"João P.", o:"YouTube Ads", s:"Reunião agendada", c:"#34d399"}
+];
+var feedEl = document.getElementById("feed"), fi = 0;
+function renderFeed(){
+  feedEl.innerHTML = "";
+  for(var k = 0; k < 4; k++){
+    var d = feedData[(fi + k) % feedData.length];
+    var row = document.createElement("div");
+    row.className = "frow";
+    row.style.animationDelay = (k * 0.05) + "s";
+    var left = document.createElement("div");
+    var nm = document.createElement("p"); nm.className = "nm"; nm.textContent = d.n;
+    var or = document.createElement("p"); or.className = "or"; or.textContent = d.o;
+    left.appendChild(nm); left.appendChild(or);
+    var st = document.createElement("span"); st.className = "st"; st.textContent = d.s; st.style.color = d.c;
+    row.appendChild(left); row.appendChild(st);
+    feedEl.appendChild(row);
+  }
+}
+renderFeed();
+if(!reduce) setInterval(function(){ fi = (fi + 1) % feedData.length; renderFeed(); }, 2600);
+
+/* testimonials */
+var T = [
+  {q:"Antes, metade dos leads ficava sem resposta até o dia seguinte. Hoje a IA responde em segundos e a recepção só recebe paciente confirmado. Mudou o nível da operação.", n:"Renata Albuquerque", r:"Diretora · Clínica Vitalle", a:"RA", t:"Agenda lotada, equipe focada em fechar"},
+  {q:"Cliente de imóvel pesquisa à noite. A IA atende, qualifica e marca a visita enquanto a equipe dorme. De manhã, a agenda dos corretores já está organizada.", n:"Eduardo Sampaio", r:"Sócio · Atlas Imóveis", a:"ES", t:"Visitas agendadas até de madrugada"},
+  {q:"A triagem que tomava horas do escritório hoje acontece sozinha. Só chega até nós quem realmente tem um caso dentro do nosso perfil. O retorno pagou o investimento no segundo mês.", n:"Camila Borges", r:"Sócia · Borges & Lacerda Advocacia", a:"CB", t:"Triagem automática de casos"},
+  {q:"O tráfego já trazia volume, mas faltava braço para atender. Com o SDR IA, triplicamos os orçamentos enviados sem contratar ninguém para o comercial.", n:"Felipe Andrade", r:"Fundador · Andrade Móveis Planejados", a:"FA", t:"3x mais orçamentos qualificados"}
+];
+var ti = 0, slide = document.getElementById("t-slide"), dots = document.getElementById("t-dots");
+T.forEach(function(_, idx){
+  var b = document.createElement("button");
+  b.setAttribute("aria-label", "Ver depoimento " + (idx + 1));
+  b.addEventListener("click", function(){ go(idx); });
+  dots.appendChild(b);
+});
+function paint(){
+  document.getElementById("t-quote").textContent = "\u201C" + T[ti].q + "\u201D";
+  document.getElementById("t-name").textContent = T[ti].n;
+  document.getElementById("t-role").textContent = T[ti].r;
+  document.getElementById("t-av").textContent = T[ti].a;
+  document.getElementById("t-tag").textContent = T[ti].t;
+  dots.querySelectorAll("button").forEach(function(b, idx){ b.classList.toggle("on", idx === ti); });
+}
+function go(idx){
+  if(reduce){ ti = (idx + T.length) % T.length; paint(); return; }
+  slide.classList.add("out");
+  setTimeout(function(){ ti = (idx + T.length) % T.length; paint(); slide.classList.remove("out"); }, 300);
+}
+document.getElementById("t-prev").addEventListener("click", function(){ go(ti - 1); resetAuto(); });
+document.getElementById("t-next").addEventListener("click", function(){ go(ti + 1); resetAuto(); });
+var auto;
+function resetAuto(){
+  if(reduce) return;
+  clearInterval(auto);
+  auto = setInterval(function(){ go(ti + 1); }, 7000);
+}
+paint(); resetAuto();
+})();
+</script>
+</body>
+</html>
