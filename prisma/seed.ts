@@ -4,11 +4,12 @@ import bcrypt from 'bcryptjs'
 const prisma = new PrismaClient()
 
 async function main() {
-  console.log('🌱 Iniciando seed do banco de dados...')
+  console.log('🌱 Starting database seed...')
 
-  // Admin user
-  const hashedPassword = await bcrypt.hash('admin@GM2024!', 12)
-  const admin = await prisma.user.upsert({
+  // Create admin user
+  const hashedPassword = await bcrypt.hash('admin123!@#', 12)
+
+  const adminUser = await prisma.user.upsert({
     where: { email: 'admin@gmmidia.com.br' },
     update: {},
     create: {
@@ -18,198 +19,352 @@ async function main() {
       role: 'ADMIN',
     },
   })
-  console.log('✅ Admin criado:', admin.email)
+  console.log('✅ Admin user created:', adminUser.email)
 
-  // Categories
-  const categories = [
-    { name: 'Tráfego Pago', slug: 'trafego-pago' },
-    { name: 'SDR & IA', slug: 'sdr-ia' },
-    { name: 'Automação', slug: 'automacao' },
-    { name: 'CRM & Vendas', slug: 'crm-vendas' },
-    { name: 'Marketing Digital', slug: 'marketing-digital' },
-  ]
-
-  for (const cat of categories) {
-    await prisma.category.upsert({
-      where: { slug: cat.slug },
+  // Create categories for blog
+  const categories = await Promise.all([
+    prisma.category.upsert({
+      where: { slug: 'trafego-pago' },
       update: {},
-      create: cat,
-    })
-  }
-  console.log('✅ Categorias criadas')
+      create: { name: 'Tráfego Pago', slug: 'trafego-pago' },
+    }),
+    prisma.category.upsert({
+      where: { slug: 'sdr-ia' },
+      update: {},
+      create: { name: 'SDR & IA', slug: 'sdr-ia' },
+    }),
+    prisma.category.upsert({
+      where: { slug: 'automacao' },
+      update: {},
+      create: { name: 'Automação Comercial', slug: 'automacao' },
+    }),
+    prisma.category.upsert({
+      where: { slug: 'crm-vendas' },
+      update: {},
+      create: { name: 'CRM & Vendas', slug: 'crm-vendas' },
+    }),
+    prisma.category.upsert({
+      where: { slug: 'marketing-digital' },
+      update: {},
+      create: { name: 'Marketing Digital', slug: 'marketing-digital' },
+    }),
+  ])
+  console.log('✅ Categories created:', categories.length)
 
-  // Get category for blog posts
-  const categoryTrafego = await prisma.category.findUnique({ where: { slug: 'trafego-pago' } })
-  const categorySDR = await prisma.category.findUnique({ where: { slug: 'sdr-ia' } })
+  // Create tags
+  const tags = await Promise.all([
+    prisma.tag.upsert({
+      where: { slug: 'meta-ads' },
+      update: {},
+      create: { name: 'Meta Ads', slug: 'meta-ads' },
+    }),
+    prisma.tag.upsert({
+      where: { slug: 'google-ads' },
+      update: {},
+      create: { name: 'Google Ads', slug: 'google-ads' },
+    }),
+    prisma.tag.upsert({
+      where: { slug: 'inteligencia-artificial' },
+      update: {},
+      create: { name: 'Inteligência Artificial', slug: 'inteligencia-artificial' },
+    }),
+    prisma.tag.upsert({
+      where: { slug: 'roi' },
+      update: {},
+      create: { name: 'ROI', slug: 'roi' },
+    }),
+    prisma.tag.upsert({
+      where: { slug: 'whatsapp' },
+      update: {},
+      create: { name: 'WhatsApp', slug: 'whatsapp' },
+    }),
+  ])
+  console.log('✅ Tags created:', tags.length)
 
-  if (categoryTrafego && categorySDR) {
-    // Sample blog posts
-    const posts = [
-      {
+  // Create sample blog posts
+  const posts = await Promise.all([
+    prisma.blogPost.upsert({
+      where: { slug: 'como-reduzir-cpl-meta-ads-2024' },
+      update: {},
+      create: {
         title: 'Como Reduzir seu Custo por Lead no Meta Ads em 2024',
         slug: 'como-reduzir-cpl-meta-ads-2024',
-        excerpt: 'Descubra as 7 estratégias que utilizamos para reduzir o custo por lead em até 65% sem comprometer a qualidade.',
-        content: `<h2>Introdução</h2>
-<p>O Meta Ads continua sendo uma das plataformas mais poderosas para captação de leads, mas muitas empresas estão desperdiçando orçamento por falta de estratégia. Neste guia, compartilhamos as mesmas táticas que usamos com nossos clientes para reduzir o CPL em até 65%.</p>
+        excerpt:
+          'Descubra as 7 estratégias que utilizamos para reduzir o custo por lead dos nossos clientes em até 65% sem comprometer a qualidade.',
+        content: `# Como Reduzir seu Custo por Lead no Meta Ads em 2024
 
-<h2>1. Otimize seu Objetivo de Campanha</h2>
-<p>O erro mais comum é usar o objetivo errado. Para leads de qualidade, use "Leads" com formulário nativo ou "Conversão" para seu site. Nunca use "Tráfego" esperando leads.</p>
+O custo por lead (CPL) é uma das métricas mais críticas em qualquer campanha de geração de leads.
 
-<h2>2. Segmentação Baseada em Dados</h2>
-<p>Abandone os públicos amplos. Use públicos personalizados de visitantes do site, lista de clientes e lookalikes de 1-2% dos seus melhores clientes.</p>
+## 1. Segmentação mais precisa
 
-<h2>3. Criativos que Convertem</h2>
-<p>Vídeos curtos de 15-30 segundos performam 3x melhor que imagens estáticas. Mostre resultados reais, não promessas genéricas.</p>
+Utilize públicos personalizados baseados em visitantes do site, listas de clientes existentes e engajamento.
 
-<h2>Conclusão</h2>
-<p>Implementando essas estratégias, nossos clientes viram uma redução média de 65% no CPL em 60 dias. O segredo está na combinação de dados, criatividade e otimização constante.</p>`,
-        coverImage: null,
+## 2. Criativos de alta conversão
+
+O criativo é responsável por 70% do desempenho da sua campanha. Invista em vídeos curtos com hook forte.
+
+## 3. Otimize o funil de conversão
+
+Não basta ter um bom anúncio. A landing page precisa carregar em menos de 2 segundos.
+
+## 4. Remarketing inteligente
+
+Retargeting para quem já visitou o site converte 10x mais que tráfego frio.`,
         published: true,
         featured: true,
         readTime: 8,
-        categoryId: categoryTrafego.id,
-        publishedAt: new Date(),
+        views: 1234,
+        categoryId: categories[0].id,
+        publishedAt: new Date('2024-11-15'),
       },
-      {
+    }),
+    prisma.blogPost.upsert({
+      where: { slug: 'sdr-ia-vs-sdr-humano-quando-usar' },
+      update: {},
+      create: {
         title: 'SDR com IA vs SDR Humano: Quando Usar Cada Um',
         slug: 'sdr-ia-vs-sdr-humano-quando-usar',
-        excerpt: 'A IA nunca substitui o toque humano em vendas complexas, mas pode ser 10x mais eficiente em qualificação.',
-        content: `<h2>O Debate do Momento</h2>
-<p>SDR com IA ou SDR humano? A resposta não é binária — é uma questão de quando e como usar cada um.</p>
+        excerpt:
+          'A IA nunca substitui o toque humano em vendas complexas, mas pode ser 10x mais eficiente em qualificação.',
+        content: `# SDR com IA vs SDR Humano: Quando Usar Cada Um
 
-<h2>Onde a IA Vence</h2>
-<p>Para qualificação inicial, respostas imediatas 24/7 e follow-up sistemático, a IA é imbatível. Ela nunca esquece de fazer o follow-up e processa centenas de leads simultâneos.</p>
+A questão não é substituição, mas complementaridade.
 
-<h2>Onde o Humano é Insubstituível</h2>
-<p>Vendas complexas com ticket alto, negociações sofisticadas e relacionamentos de longo prazo ainda precisam do toque humano. A empatia não tem substituto.</p>
+## Quando usar SDR com IA
 
-<h2>O Modelo Híbrido Ideal</h2>
-<p>Os melhores resultados vêm da combinação: IA para triagem e qualificação, humano para fechamento. Isso aumenta a produtividade do time em 3-4x.</p>`,
-        coverImage: null,
+- Qualificação inicial de leads (perguntas padronizadas)
+- Atendimento fora do horário comercial
+- Follow-up automatizado
+- Agendamento de reuniões
+
+## Quando usar SDR Humano
+
+- Negociações complexas e de alto valor
+- Relacionamento com prospects de alto nível
+- Vendas consultivas que exigem empatia
+- Situações que fogem do script`,
         published: true,
         featured: false,
         readTime: 6,
-        categoryId: categorySDR.id,
-        publishedAt: new Date(),
+        views: 876,
+        categoryId: categories[1].id,
+        publishedAt: new Date('2024-11-08'),
       },
-    ]
+    }),
+  ])
+  console.log('✅ Blog posts created:', posts.length)
 
-    for (const post of posts) {
-      await prisma.blogPost.upsert({
-        where: { slug: post.slug },
-        update: {},
-        create: post,
-      })
-    }
-    console.log('✅ Posts do blog criados')
-  }
-
-  // Testimonials
-  const testimonials = [
-    {
-      name: 'Ricardo Almeida',
-      role: 'CEO',
-      company: 'Grupo Almeida Imóveis',
-      content: 'Em 4 meses, nossas reuniões com compradores qualificados aumentaram 85%. A automação com WhatsApp e o CRM transformaram completamente nosso processo comercial.',
-      rating: 5,
-      featured: true,
-      published: true,
-    },
-    {
-      name: 'Fernanda Costa',
-      role: 'Diretora de Marketing',
-      company: 'Clínica Estética Belle',
-      content: 'Tínhamos muito tráfego mas poucos leads qualificados. A GM Mídia reestruturou nossas campanhas e implantou um SDR com IA. Nosso faturamento cresceu 210% em 5 meses.',
-      rating: 5,
-      featured: true,
-      published: true,
-    },
-    {
-      name: 'Bruno Mendonça',
-      role: 'Sócio-fundador',
-      company: 'TechVenda Software',
-      content: 'Conseguiram reduzir nosso CPL em 68% e aumentar a qualidade dos leads em 3x. O acompanhamento semanal e os relatórios detalhados nos dão total transparência.',
-      rating: 5,
-      featured: false,
-      published: true,
-    },
-  ]
-
-  for (const t of testimonials) {
-    await prisma.testimonial.create({ data: t }).catch(() => {})
-  }
-  console.log('✅ Depoimentos criados')
-
-  // Cases
-  const cases = [
-    {
-      client: 'Boutique Donna — Moda Premium',
-      niche: 'E-commerce',
-      title: 'De R$30K para R$380K/mês em 6 meses',
-      slug: 'boutique-donna-ecommerce-escala',
-      description: 'Reestruturação completa das campanhas de Meta Ads e Google Shopping. Implementação de SDR para recuperação de carrinhos e remarketing dinâmico.',
-      results: {
-        roas: '12x',
-        revenue_growth: '+1.167%',
-        cac_reduction: '-68%',
-      },
-      images: [],
-      featured: true,
-      published: true,
-    },
-    {
-      client: 'Clínica Odonto Premium',
-      niche: 'Saúde',
-      title: '340 leads qualificados por mês com R$18 cada',
-      slug: 'clinica-odonto-premium-leads',
-      description: 'Google Ads + Meta Ads com landing page especializada e SDR com IA para qualificação 24h.',
-      results: {
-        leads_per_month: '340',
-        conversion_rate: '28%',
-        cost_per_lead: 'R$18',
-      },
-      images: [],
-      featured: true,
-      published: true,
-    },
-  ]
-
-  for (const c of cases) {
-    await prisma.case.upsert({
-      where: { slug: c.slug },
+  // Create sample testimonials
+  const testimonials = await Promise.all([
+    prisma.testimonial.upsert({
+      where: { id: 'testimonial-1' },
       update: {},
-      create: c,
-    })
-  }
-  console.log('✅ Cases criados')
-
-  // Settings
-  const settings = [
-    { key: 'whatsapp_number', value: '5511999999999' },
-    { key: 'contact_email', value: 'contato@gmmidia.com.br' },
-    { key: 'site_name', value: 'GM Mídia Digital' },
-    { key: 'site_tagline', value: 'Transformamos Tráfego em Vendas com IA' },
-  ]
-
-  for (const s of settings) {
-    await prisma.setting.upsert({
-      where: { key: s.key },
+      create: {
+        id: 'testimonial-1',
+        name: 'Ricardo Almeida',
+        role: 'CEO',
+        company: 'Grupo Almeida Imóveis',
+        content:
+          'Em 4 meses com a GM Mídia Digital, nossas reuniões com compradores qualificados aumentaram 85%. A automação com WhatsApp e o CRM transformaram completamente nosso processo comercial. Hoje vendemos 3x mais com o mesmo time.',
+        rating: 5,
+        featured: true,
+        published: true,
+      },
+    }),
+    prisma.testimonial.upsert({
+      where: { id: 'testimonial-2' },
       update: {},
-      create: s,
-    })
-  }
-  console.log('✅ Configurações criadas')
+      create: {
+        id: 'testimonial-2',
+        name: 'Fernanda Costa',
+        role: 'Diretora de Marketing',
+        company: 'Clínica Estética Belle',
+        content:
+          'Tínhamos muito tráfego mas poucos leads qualificados. A GM Mídia reestruturou nossas campanhas e implantou um SDR com IA que qualifica os pacientes 24h. Nosso faturamento cresceu 210% em 5 meses.',
+        rating: 5,
+        featured: true,
+        published: true,
+      },
+    }),
+    prisma.testimonial.upsert({
+      where: { id: 'testimonial-3' },
+      update: {},
+      create: {
+        id: 'testimonial-3',
+        name: 'Bruno Mendonça',
+        role: 'Sócio-fundador',
+        company: 'TechVenda Software',
+        content:
+          'A expertise deles em tráfego pago para B2B é diferenciada. Conseguiram reduzir nosso CPL em 68% e aumentar a qualidade dos leads em 3x.',
+        rating: 5,
+        featured: false,
+        published: true,
+      },
+    }),
+  ])
+  console.log('✅ Testimonials created:', testimonials.length)
 
-  console.log('\n🎉 Seed concluído com sucesso!')
-  console.log('📧 Admin email: admin@gmmidia.com.br')
-  console.log('🔑 Admin senha: admin@GM2024!')
-  console.log('\n⚠️  IMPORTANTE: Altere a senha após o primeiro acesso!')
+  // Create sample cases
+  const cases = await Promise.all([
+    prisma.case.upsert({
+      where: { slug: 'ecommerce-moda-premium-380k-mes' },
+      update: {},
+      create: {
+        client: 'Boutique Donna — Moda Premium',
+        niche: 'E-commerce',
+        title: 'De R$30K para R$380K/mês em 6 meses',
+        slug: 'ecommerce-moda-premium-380k-mes',
+        description:
+          'Loja de moda premium que estava investindo mal em Meta Ads sem estratégia. Reestruturamos toda a conta, criamos campanhas segmentadas por persona e implementamos remarketing dinâmico.',
+        results: {
+          roas: '12x',
+          faturamento: '+1.167%',
+          cac: '-68%',
+        },
+        images: [],
+        featured: true,
+        published: true,
+      },
+    }),
+    prisma.case.upsert({
+      where: { slug: 'clinica-odontologica-340-leads-mes' },
+      update: {},
+      create: {
+        client: 'Clínica Odonto Premium — São Paulo',
+        niche: 'Saúde',
+        title: '340 leads qualificados por mês com R$18 cada',
+        slug: 'clinica-odontologica-340-leads-mes',
+        description:
+          'Clínica odontológica que dependia de indicação. Implementamos Google Ads, landing page e SDR com IA para qualificação 24h.',
+        results: {
+          leads_mes: '340',
+          taxa_conversao: '28%',
+          custo_lead: 'R$18',
+        },
+        images: [],
+        featured: true,
+        published: true,
+      },
+    }),
+  ])
+  console.log('✅ Cases created:', cases.length)
+
+  // Create services
+  const services = await Promise.all([
+    prisma.service.upsert({
+      where: { slug: 'gestao-de-trafego-pago' },
+      update: {},
+      create: {
+        name: 'Gestão de Tráfego Pago',
+        slug: 'gestao-de-trafego-pago',
+        description: 'Campanhas de alta performance em Meta Ads, Google Ads, YouTube e TikTok Ads.',
+        content: 'Gerenciamos suas campanhas com estratégia, criatividade e otimização contínua para maximizar o retorno de cada real investido.',
+        icon: 'Target',
+        featured: true,
+        order: 1,
+      },
+    }),
+    prisma.service.upsert({
+      where: { slug: 'sdr-ia' },
+      update: {},
+      create: {
+        name: 'SDR com Inteligência Artificial',
+        slug: 'sdr-ia',
+        description: 'Qualificação automática de leads 24h/dia com IA.',
+        content: 'Nosso SDR com IA nunca dorme. Qualifica, nutre e agenda reuniões de forma completamente autônoma.',
+        icon: 'Bot',
+        featured: true,
+        order: 2,
+      },
+    }),
+    prisma.service.upsert({
+      where: { slug: 'automacao-comercial' },
+      update: {},
+      create: {
+        name: 'Automação Comercial',
+        slug: 'automacao-comercial',
+        description: 'CRM integrado, funis automatizados e integrações avançadas.',
+        content: 'Automatizamos cada etapa do seu processo de vendas com as melhores ferramentas do mercado.',
+        icon: 'Workflow',
+        featured: true,
+        order: 3,
+      },
+    }),
+    prisma.service.upsert({
+      where: { slug: 'captacao-de-leads' },
+      update: {},
+      create: {
+        name: 'Captação de Leads',
+        slug: 'captacao-de-leads',
+        description: 'Landing pages de alta conversão e estratégias de segmentação.',
+        content: 'Criamos um ecossistema completo de captação para transformar visitantes em compradores.',
+        icon: 'Users',
+        featured: true,
+        order: 4,
+      },
+    }),
+    prisma.service.upsert({
+      where: { slug: 'whatsapp-inteligente' },
+      update: {},
+      create: {
+        name: 'WhatsApp Inteligente',
+        slug: 'whatsapp-inteligente',
+        description: 'Chatbot humanizado, sequências e broadcast segmentado.',
+        content: 'Transforme o WhatsApp no seu principal canal de vendas com automação e IA.',
+        icon: 'MessageSquare',
+        featured: true,
+        order: 5,
+      },
+    }),
+    prisma.service.upsert({
+      where: { slug: 'crm-e-vendas' },
+      update: {},
+      create: {
+        name: 'CRM e Gestão de Vendas',
+        slug: 'crm-e-vendas',
+        description: 'Pipeline visual, automação de follow-up e relatórios completos.',
+        content: 'Organize e escale seu processo comercial com dados e automação.',
+        icon: 'BarChart',
+        featured: true,
+        order: 6,
+      },
+    }),
+  ])
+  console.log('✅ Services created:', services.length)
+
+  // Create settings
+  await Promise.all([
+    prisma.setting.upsert({
+      where: { key: 'whatsapp_number' },
+      update: {},
+      create: { key: 'whatsapp_number', value: '5511999999999' },
+    }),
+    prisma.setting.upsert({
+      where: { key: 'contact_email' },
+      update: {},
+      create: { key: 'contact_email', value: 'contato@gmmidia.com.br' },
+    }),
+    prisma.setting.upsert({
+      where: { key: 'company_name' },
+      update: {},
+      create: { key: 'company_name', value: 'GM Mídia Digital' },
+    }),
+  ])
+  console.log('✅ Settings created')
+
+  console.log('\n🎉 Seed completed successfully!')
+  console.log('\n📋 Admin credentials:')
+  console.log('   Email: admin@gmmidia.com.br')
+  console.log('   Password: admin123!@#')
+  console.log('\n⚠️  IMPORTANT: Change the admin password after first login!')
 }
 
 main()
-  .then(() => prisma.$disconnect())
-  .catch((e) => {
-    console.error(e)
-    prisma.$disconnect()
+  .then(async () => {
+    await prisma.$disconnect()
+  })
+  .catch(async (e) => {
+    console.error('❌ Seed failed:', e)
+    await prisma.$disconnect()
     process.exit(1)
   })

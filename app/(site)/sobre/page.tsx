@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { CTASection } from '@/components/site/cta-section'
 import { CheckCircle2, Target, Heart, Zap, Users, Award, TrendingUp } from 'lucide-react'
