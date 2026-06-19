@@ -3,6 +3,7 @@ import { Hero } from '@/components/site/hero'
 import { StatsSection } from '@/components/site/stats-section'
 import { ServicesSection } from '@/components/site/services-section'
 import { MetricsSection } from '@/components/site/metrics-section'
+import { FunnelSection } from '@/components/site/funnel-section'
 import { ProcessSection } from '@/components/site/process-section'
 import { CasesSection } from '@/components/site/cases-section'
 import { TestimonialsSection } from '@/components/site/testimonials-section'
@@ -21,6 +22,7 @@ export default function HomePage() {
       <StatsSection />
       <ServicesSection />
       <MetricsSection />
+      <FunnelSection />
       <ProcessSection />
       <CasesSection />
       <TestimonialsSection />
