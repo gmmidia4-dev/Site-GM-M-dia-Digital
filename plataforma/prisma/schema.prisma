@@ -1,0 +1,420 @@
+// =============================================================================
+// Reportia — Schema do banco de dados (PostgreSQL)
+// Modelo multi-tenant: cada Agência é um tenant isolado.
+// =============================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// -----------------------------------------------------------------------------
+// Enums
+// -----------------------------------------------------------------------------
+
+enum Role {
+  ADMIN // Administrador da agência (acesso total)
+  MANAGER // Gestor de tráfego (gerencia clientes/relatórios)
+  CLIENT // Cliente final (vê apenas os próprios relatórios)
+}
+
+enum Plan {
+  FREE
+  STARTER
+  PRO
+  AGENCY
+}
+
+enum Platform {
+  META_ADS
+  GOOGLE_ADS
+  TIKTOK_ADS
+  LINKEDIN_ADS
+  GA4
+  SEARCH_CONSOLE
+}
+
+enum IntegrationStatus {
+  CONNECTED
+  EXPIRED
+  ERROR
+  DISCONNECTED
+}
+
+enum ReportPeriod {
+  DAILY
+  WEEKLY
+  MONTHLY
+  CUSTOM
+}
+
+enum ReportStatus {
+  DRAFT
+  GENERATING
+  READY
+  SENT
+  ERROR
+}
+
+enum ScheduleFrequency {
+  DAILY
+  WEEKLY
+  MONTHLY
+}
+
+enum DeliveryChannel {
+  EMAIL
+  WHATSAPP
+  LINK
+}
+
+enum DeliveryStatus {
+  PENDING
+  SENT
+  FAILED
+}
+
+enum InsightType {
+  EXECUTIVE_SUMMARY // Resumo executivo para o cliente
+  PERFORMANCE_ANALYSIS // Análise automática dos resultados
+  GROWTH_EXPLANATION // Explica crescimento/queda das métricas
+  OPTIMIZATION // Sugestões de otimização
+}
+
+// -----------------------------------------------------------------------------
+// Tenant: Agência
+// -----------------------------------------------------------------------------
+
+model Agency {
+  id        String  @id @default(cuid())
+  name      String
+  slug      String  @unique
+  logoUrl   String?
+  // Identidade visual aplicada aos relatórios (white-label)
+  brandPrimary   String  @default("#6366F1")
+  brandSecondary String  @default("#10B981")
+  website   String?
+  phone     String?
+  plan      Plan    @default(FREE)
+
+  users         User[]
+  clients       Client[]
+  integrations  Integration[]
+  reports       Report[]
+  schedules     ReportSchedule[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([slug])
+}
+
+// -----------------------------------------------------------------------------
+// Usuários + NextAuth
+// -----------------------------------------------------------------------------
+
+model User {
+  id        String  @id @default(cuid())
+  name      String?
+  email     String  @unique
+  password  String? // hash bcrypt (null quando login social)
+  image     String?
+  role      Role    @default(MANAGER)
+  emailVerified DateTime?
+
+  agencyId  String
+  agency    Agency  @relation(fields: [agencyId], references: [id], onDelete: Cascade)
+
+  // Quando role = CLIENT, restringe o acesso a estes clientes
+  clientAccess ClientUser[]
+
+  accounts  Account[]
+  sessions  Session[]
+  activity  ActivityLog[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([agencyId])
+  @@index([email])
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// -----------------------------------------------------------------------------
+// Clientes da agência
+// -----------------------------------------------------------------------------
+
+model Client {
+  id        String  @id @default(cuid())
+  agencyId  String
+  agency    Agency  @relation(fields: [agencyId], references: [id], onDelete: Cascade)
+
+  name        String
+  logoUrl     String?
+  // Override opcional da identidade visual da agência
+  brandPrimary   String?
+  segment     String? // segmento/nicho do cliente
+
+  // Contato
+  contactName  String?
+  contactEmail String?
+  contactPhone String? // usado também para envio via WhatsApp
+
+  isActive  Boolean @default(true)
+
+  integrations Integration[]
+  reports      Report[]
+  schedules    ReportSchedule[]
+  clientUsers  ClientUser[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([agencyId])
+}
+
+// Vincula um usuário CLIENT a um ou mais Clientes (portal do cliente)
+model ClientUser {
+  id       String @id @default(cuid())
+  userId   String
+  clientId String
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  client Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, clientId])
+  @@index([clientId])
+}
+
+// -----------------------------------------------------------------------------
+// Integrações com plataformas de anúncios / analytics
+// -----------------------------------------------------------------------------
+
+model Integration {
+  id        String   @id @default(cuid())
+  agencyId  String
+  agency    Agency   @relation(fields: [agencyId], references: [id], onDelete: Cascade)
+  // Uma integração pode estar associada a um cliente específico
+  clientId  String?
+  client    Client?  @relation(fields: [clientId], references: [id], onDelete: SetNull)
+
+  platform  Platform
+  status    IntegrationStatus @default(CONNECTED)
+
+  // Identificação da conta externa (ex.: act_123 no Meta, customerId no Google)
+  externalAccountId String
+  accountName       String?
+  currency          String? @default("BRL")
+
+  // Tokens OAuth (cifrados em repouso — ver lib/crypto.ts)
+  accessToken  String? @db.Text
+  refreshToken String? @db.Text
+  expiresAt    DateTime?
+  scope        String?
+
+  lastSyncedAt DateTime?
+  metrics      MetricDaily[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([agencyId, platform, externalAccountId])
+  @@index([clientId])
+  @@index([agencyId, platform])
+}
+
+// -----------------------------------------------------------------------------
+// Métricas diárias (granularidade base para todos os relatórios)
+// Os indicadores derivados (CPC, CPM, CTR, CPL, ROAS) são calculados em runtime
+// a partir destes contadores brutos — ver lib/metrics.ts
+// -----------------------------------------------------------------------------
+
+model MetricDaily {
+  id            String   @id @default(cuid())
+  integrationId String
+  integration   Integration @relation(fields: [integrationId], references: [id], onDelete: Cascade)
+
+  date          DateTime @db.Date
+
+  // Quebra opcional por campanha
+  campaignId    String?
+  campaignName  String?
+
+  // Contadores brutos
+  spend       Decimal @default(0) @db.Decimal(14, 2) // Investimento
+  impressions Int     @default(0)
+  reach       Int     @default(0) // Alcance
+  clicks      Int     @default(0)
+  conversions Int     @default(0)
+  leads       Int     @default(0)
+  revenue     Decimal @default(0) @db.Decimal(14, 2) // Receita atribuída
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([integrationId, date, campaignId])
+  @@index([integrationId, date])
+}
+
+// -----------------------------------------------------------------------------
+// Relatórios
+// -----------------------------------------------------------------------------
+
+model Report {
+  id        String   @id @default(cuid())
+  agencyId  String
+  agency    Agency   @relation(fields: [agencyId], references: [id], onDelete: Cascade)
+  clientId  String
+  client    Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  title     String
+  period    ReportPeriod @default(MONTHLY)
+  startDate DateTime @db.Date
+  endDate   DateTime @db.Date
+
+  status    ReportStatus @default(DRAFT)
+
+  // Link público de compartilhamento (somente leitura)
+  shareToken   String?  @unique
+  isPublic     Boolean  @default(false)
+
+  // Arquivo PDF gerado
+  pdfUrl       String?
+
+  // Snapshot dos dados agregados no momento da geração (JSON)
+  // Garante que o relatório permaneça imutável mesmo que as métricas mudem.
+  dataSnapshot Json?
+
+  // Configuração de seções/métricas exibidas
+  config       Json?
+
+  insights   AiInsight[]
+  deliveries ReportDelivery[]
+
+  generatedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([agencyId])
+  @@index([clientId])
+  @@index([shareToken])
+}
+
+// Análises geradas por IA, vinculadas a um relatório
+model AiInsight {
+  id        String      @id @default(cuid())
+  reportId  String
+  report    Report      @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  type      InsightType
+  content   String      @db.Text
+  model     String? // modelo usado (ex.: claude-opus-4-8)
+
+  createdAt DateTime @default(now())
+
+  @@index([reportId])
+}
+
+// -----------------------------------------------------------------------------
+// Agendamento e envio automático
+// -----------------------------------------------------------------------------
+
+model ReportSchedule {
+  id        String   @id @default(cuid())
+  agencyId  String
+  agency    Agency   @relation(fields: [agencyId], references: [id], onDelete: Cascade)
+  clientId  String
+  client    Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  frequency ScheduleFrequency
+  // Canais de envio (lista de DeliveryChannel serializada)
+  channels  DeliveryChannel[]
+  recipients String[] // e-mails / telefones
+  includeAi Boolean  @default(true)
+
+  isActive   Boolean  @default(true)
+  lastRunAt  DateTime?
+  nextRunAt  DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([agencyId])
+  @@index([clientId])
+  @@index([nextRunAt, isActive])
+}
+
+model ReportDelivery {
+  id        String   @id @default(cuid())
+  reportId  String
+  report    Report   @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  channel   DeliveryChannel
+  recipient String
+  status    DeliveryStatus @default(PENDING)
+  error     String?
+
+  sentAt    DateTime?
+  createdAt DateTime @default(now())
+
+  @@index([reportId])
+}
+
+// -----------------------------------------------------------------------------
+// Auditoria
+// -----------------------------------------------------------------------------
+
+model ActivityLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  agencyId  String
+  action    String
+  entity    String?
+  entityId  String?
+  metadata  Json?
+
+  createdAt DateTime @default(now())
+
+  @@index([agencyId, createdAt])
+}
