@@ -3,7 +3,7 @@ import { prisma } from '@/lib/db'
 import { requireStaff } from '@/lib/rbac'
 import { handleError } from '@/lib/api'
 import { getAdapter } from '@/lib/integrations'
-import { encrypt, decrypt } from '@/lib/crypto'
+import { encrypt, decrypt, randomToken } from '@/lib/crypto'
 import { appUrl } from '@/lib/utils'
 import type { Platform } from '@prisma/client'
 
@@ -16,7 +16,10 @@ const PLATFORM_MAP: Record<string, Platform> = {
   searchconsole: 'SEARCH_CONSOLE',
 }
 
-/** Callback OAuth: troca o code por tokens e persiste a integração cifrada. */
+/**
+ * Callback OAuth: troca o code por tokens, cria a integração (pendente de
+ * seleção de conta) e redireciona para a tela de seleção de conta.
+ */
 export async function GET(req: NextRequest, { params }: { params: { platform: string } }) {
   try {
     const user = await requireStaff()
@@ -38,35 +41,28 @@ export async function GET(req: NextRequest, { params }: { params: { platform: st
     }
     const tokens = await adapter.exchangeCode(code)
 
-    await prisma.integration.upsert({
-      where: {
-        agencyId_platform_externalAccountId: {
-          agencyId: user.agencyId,
-          platform,
-          externalAccountId: tokens.externalAccountId || 'pending',
-        },
-      },
-      create: {
+    // Conta ainda não escolhida → placeholder único para evitar colisão.
+    const externalAccountId = tokens.externalAccountId || `pending:${randomToken(8)}`
+
+    const integration = await prisma.integration.create({
+      data: {
         agencyId: user.agencyId,
         clientId: decoded.clientId,
         platform,
-        externalAccountId: tokens.externalAccountId || 'pending',
+        externalAccountId,
         accountName: tokens.accountName,
         accessToken: tokens.accessToken ? encrypt(tokens.accessToken) : null,
         refreshToken: tokens.refreshToken ? encrypt(tokens.refreshToken) : null,
         expiresAt: tokens.expiresAt,
         scope: tokens.scope,
-        status: 'CONNECTED',
-      },
-      update: {
-        clientId: decoded.clientId,
-        accessToken: tokens.accessToken ? encrypt(tokens.accessToken) : undefined,
-        refreshToken: tokens.refreshToken ? encrypt(tokens.refreshToken) : undefined,
-        expiresAt: tokens.expiresAt,
-        status: 'CONNECTED',
+        status: tokens.externalAccountId ? 'CONNECTED' : 'DISCONNECTED',
       },
     })
 
+    // Se a plataforma permite listar contas, leva à seleção; senão, conclui.
+    if (!tokens.externalAccountId && adapter.listAccounts) {
+      return NextResponse.redirect(appUrl(`/integracoes/selecionar?id=${integration.id}`))
+    }
     return NextResponse.redirect(appUrl('/integracoes?connected=1'))
   } catch (err) {
     return handleError(err)

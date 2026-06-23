@@ -25,14 +25,23 @@ para produção em escala (⬜). Cada fase é incremental e entregável.
 - [x] Portal do cliente final.
 - [x] Agendamentos + endpoints de cron (diário/semanal/mensal).
 
-## Fase 2 — Integrações reais (produção) ⬜
-**Objetivo:** sair do modo demo, uma plataforma por vez.
-- [ ] Meta Ads: App Review, `fetchInsights` real, mapeamento de ações → leads/receita.
-- [ ] Google (Ads + GA4 + Search Console): developer token, GAQL, `runReport`, refresh token.
-- [ ] TikTok e LinkedIn Ads: relatórios reais.
-- [ ] **Refresh automático de tokens** OAuth (job que renova antes de `expiresAt`).
-- [ ] Tela de seleção de contas após OAuth (listar `act_*`/customers e vincular ao cliente).
-- [ ] Tratamento de rate limits e *retries* com backoff por adaptador.
+## Fase 2 — Integrações reais (produção) 🚧 (código entregue)
+**Objetivo:** sair do modo demo. O código de produção está implementado conforme as specs
+oficiais; falta a **validação ao vivo** (depende de credenciais/aprovações de cada plataforma).
+- [x] `fetchInsights` real de todas as plataformas (Meta Graph Insights, Google Ads GAQL
+      `searchStream`, GA4 `runReport`, Search Console `searchAnalytics`, TikTok
+      `report/integrated/get`, LinkedIn `adAnalytics`) — com fallback demo preservado.
+- [x] **Refresh automático de tokens** antes de expirar (`getValidAccessToken`) com persistência
+      cifrada (Meta long-lived, Google/LinkedIn refresh_token grant).
+- [x] **Seleção de contas após OAuth** (`listAccounts` por adaptador + tela
+      `/integracoes/selecionar` + `PATCH /api/integrations/:id`).
+- [x] **Retry/backoff** com tratamento de rate limit (`Retry-After`) em `lib/integrations/http.ts`.
+- [x] Status da integração atualizado por sincronização (CONNECTED/ERROR/EXPIRED).
+- [ ] **Validação ao vivo** por plataforma (requer credenciais reais):
+  - [ ] Meta: App Review (`ads_read`) e mapeamento fino de ações → leads/receita por conta.
+  - [ ] Google: aprovação do **developer token** + `login-customer-id` p/ MCC.
+  - [ ] TikTok / LinkedIn: apps aprovados e versões de API fixadas.
+- [ ] Backfill histórico ao conectar (delegado à Fase 3 — fila).
 
 ## Fase 3 — Sincronização e jobs em escala ⬜
 **Objetivo:** desacoplar a coleta da requisição do usuário.

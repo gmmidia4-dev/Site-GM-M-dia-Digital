@@ -32,9 +32,11 @@ Base: `/api`. Autenticação por sessão (NextAuth/JWT em cookie). Erros padroni
 |--------|------|-------|-----------|
 | `GET` | `/api/integrations` | staff | Lista contas conectadas (sem tokens) |
 | `POST` | `/api/integrations` | staff | Conecta/atualiza conta (ID direto / demo) |
+| `PATCH` | `/api/integrations/:id` | staff | Vincula a conta escolhida após o OAuth |
+| `GET` | `/api/integrations/:id/accounts` | staff | Lista contas disponíveis (pós-OAuth) |
 | `DELETE` | `/api/integrations/:id` | staff | Desconecta conta |
 | `GET` | `/api/oauth/:platform/authorize` | staff | Inicia OAuth (redirect p/ consentimento) |
-| `GET` | `/api/oauth/:platform/callback` | staff | Troca code por tokens (cifra e salva) |
+| `GET` | `/api/oauth/:platform/callback` | staff | Troca code por tokens → seleção de conta |
 
 `:platform ∈ { meta, google, tiktok, linkedin, ga4, searchconsole }`
 
@@ -121,6 +123,10 @@ Todas têm um **adaptador** em `src/lib/integrations/`. Em `DEMO_MODE=true` não
 ### Como ativar a produção
 1. Defina `DEMO_MODE=false`.
 2. Configure as credenciais da(s) plataforma(s) desejada(s) no `.env`.
-3. Conecte cada conta via **OAuth** (`/api/oauth/:platform/authorize?clientId=…`) — os tokens
-   são cifrados (AES-256-GCM) e salvos por integração.
-4. A sincronização passa a usar dados reais automaticamente.
+3. Conecte cada conta via **OAuth** (botão na tela de Integrações →
+   `/api/oauth/:platform/authorize?clientId=…`). Os tokens são cifrados (AES-256-GCM).
+4. Após o consentimento, escolha a conta na tela **`/integracoes/selecionar`**
+   (lista via `listAccounts` de cada adaptador).
+5. A sincronização passa a usar dados reais. Os **tokens são renovados
+   automaticamente** (`getValidAccessToken`) antes de expirar, e toda chamada usa
+   **retry/backoff** com tratamento de rate limit (`lib/integrations/http.ts`).

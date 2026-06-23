@@ -1,8 +1,10 @@
-import type { PlatformAdapter, FetchContext, DailyInsight, TokenSet } from './types'
+import type { PlatformAdapter, FetchContext, DailyInsight, TokenSet, AdAccountOption } from './types'
 import { isDemoMode } from './types'
 import { generateDemoInsights } from './demo'
+import { fetchJson } from './http'
 
-const API = `https://graph.facebook.com/${process.env.META_API_VERSION || 'v21.0'}`
+const VERSION = process.env.META_API_VERSION || 'v21.0'
+const API = `https://graph.facebook.com/${VERSION}`
 
 /**
  * Adaptador Meta Ads (Facebook/Instagram) via Graph API — Marketing Insights.
@@ -20,7 +22,7 @@ export const metaAdapter: PlatformAdapter = {
       scope: 'ads_read,business_management',
       response_type: 'code',
     })
-    return `https://www.facebook.com/${process.env.META_API_VERSION || 'v21.0'}/dialog/oauth?${params}`
+    return `https://www.facebook.com/${VERSION}/dialog/oauth?${params}`
   },
 
   async exchangeCode(code: string): Promise<TokenSet> {
@@ -30,14 +32,45 @@ export const metaAdapter: PlatformAdapter = {
       redirect_uri: process.env.META_REDIRECT_URI || '',
       code,
     })
-    const res = await fetch(`${API}/oauth/access_token?${params}`)
-    if (!res.ok) throw new Error(`Meta OAuth falhou: ${res.status}`)
-    const json = (await res.json()) as { access_token: string; expires_in?: number }
+    const json = await fetchJson<{ access_token: string; expires_in?: number }>(
+      `${API}/oauth/access_token?${params}`
+    )
+    // Já troca por um token de longa duração (~60 dias)
+    return metaAdapter.refresh!(json.access_token)
+  },
+
+  /** Troca um token de curta duração por um de longa duração (fb_exchange_token). */
+  async refresh(shortToken: string): Promise<TokenSet> {
+    const params = new URLSearchParams({
+      grant_type: 'fb_exchange_token',
+      client_id: process.env.META_APP_ID || '',
+      client_secret: process.env.META_APP_SECRET || '',
+      fb_exchange_token: shortToken,
+    })
+    const json = await fetchJson<{ access_token: string; expires_in?: number }>(
+      `${API}/oauth/access_token?${params}`
+    )
     return {
       accessToken: json.access_token,
       expiresAt: json.expires_in ? new Date(Date.now() + json.expires_in * 1000) : undefined,
       scope: 'ads_read',
     }
+  },
+
+  async listAccounts(accessToken: string): Promise<AdAccountOption[]> {
+    const params = new URLSearchParams({
+      fields: 'account_id,name,currency',
+      limit: '200',
+      access_token: accessToken,
+    })
+    const json = await fetchJson<{ data: { account_id: string; name: string; currency: string }[] }>(
+      `${API}/me/adaccounts?${params}`
+    )
+    return (json.data ?? []).map((a) => ({
+      id: `act_${a.account_id}`,
+      name: a.name,
+      currency: a.currency,
+    }))
   },
 
   async fetchInsights(ctx: FetchContext): Promise<DailyInsight[]> {
@@ -67,13 +100,8 @@ export const metaAdapter: PlatformAdapter = {
     const rows: DailyInsight[] = []
     let url: string | null = `${API}/${ctx.externalAccountId}/insights?${params}`
     while (url) {
-      const res = await fetch(url)
-      if (!res.ok) throw new Error(`Meta Insights falhou: ${res.status}`)
-      const json: any = await res.json()
+      const json: any = await fetchJson(url)
       for (const r of json.data ?? []) {
-        const leads = pickAction(r.actions, ['lead', 'onsite_conversion.lead_grouped'])
-        const conversions = pickAction(r.actions, ['offsite_conversion.fb_pixel_purchase', 'purchase', 'lead'])
-        const revenue = pickAction(r.action_values, ['offsite_conversion.fb_pixel_purchase', 'purchase'])
         rows.push({
           date: r.date_start,
           campaignId: r.campaign_id,
@@ -82,9 +110,9 @@ export const metaAdapter: PlatformAdapter = {
           impressions: Number(r.impressions ?? 0),
           reach: Number(r.reach ?? 0),
           clicks: Number(r.clicks ?? 0),
-          conversions,
-          leads,
-          revenue,
+          conversions: pickAction(r.actions, ['offsite_conversion.fb_pixel_purchase', 'purchase', 'lead']),
+          leads: pickAction(r.actions, ['lead', 'onsite_conversion.lead_grouped']),
+          revenue: pickAction(r.action_values, ['offsite_conversion.fb_pixel_purchase', 'purchase']),
         })
       }
       url = json.paging?.next ?? null
