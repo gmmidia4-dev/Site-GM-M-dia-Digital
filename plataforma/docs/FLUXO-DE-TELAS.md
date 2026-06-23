@@ -13,11 +13,15 @@ AGÊNCIA (ADMIN / MANAGER)  — layout com sidebar
   /clientes                   Lista de clientes (cards com nº de contas/relatórios)
   /clientes/novo              Cadastro de cliente (logo, contato, cor da marca)
   /clientes/:id               Detalhe (contas conectadas + relatórios recentes)
+  /clientes/:id/editar        Edição do cliente
   /integracoes                Conectar contas (form + OAuth) e gerenciar conexões
+  /integracoes/selecionar     Escolha da conta de anúncios após o OAuth
   /relatorios                 Lista de relatórios (status)
   /relatorios/novo            Gerar relatório (cliente + período + IA)
   /relatorios/:id             Relatório completo + ações (PDF, link, e-mail, WhatsApp)
+  /agendamentos               Envio automático (frequência, canais, destinatários)
   /configuracoes              Identidade visual da agência (white-label) — somente ADMIN
+  /configuracoes/equipe       Equipe e permissões (ADMIN/MANAGER/CLIENT) — somente ADMIN
 
 CLIENTE FINAL (CLIENT)  — layout simplificado
   /portal                     Lista dos próprios relatórios → abre /r/:token

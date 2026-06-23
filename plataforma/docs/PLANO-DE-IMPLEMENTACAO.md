@@ -23,7 +23,9 @@ para produção em escala (⬜). Cada fase é incremental e entregável.
 - [x] Exportação em PDF e link público de compartilhamento.
 - [x] Envio por e-mail e WhatsApp (demo) + log de entregas.
 - [x] Portal do cliente final.
-- [x] Agendamentos + endpoints de cron (diário/semanal/mensal).
+- [x] Agendamentos: UI completa (criar/pausar/excluir) + endpoints de cron (diário/semanal/mensal).
+- [x] Gestão de equipe e permissões (criar ADMIN/MANAGER/CLIENT + acesso por cliente).
+- [x] Edição de cliente; health check; testes do motor de métricas; Docker + CI.
 
 ## Fase 2 — Integrações reais (produção) 🚧 (código entregue)
 **Objetivo:** sair do modo demo. O código de produção está implementado conforme as specs
@@ -67,7 +69,8 @@ oficiais; falta a **validação ao vivo** (depende de credenciais/aprovações d
 - [ ] Cache/registro de prompts e custo por agência.
 
 ## Fase 6 — Colaboração, billing e escala ⬜
-- [ ] Convites de usuários e gestão de equipe (papéis por cliente).
+- [x] Gestão de equipe e permissões (entregue na Fase 1).
+- [ ] Convites de usuários por e-mail (magic link) em vez de senha provisória.
 - [ ] Portal do cliente com login por *magic link*.
 - [ ] **Billing** (Stripe): planos FREE/STARTER/PRO/AGENCY, limites de clientes/relatórios.
 - [ ] White-label avançado: domínio próprio por agência.

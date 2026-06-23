@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
-import { FileText, Mail, Phone, Plug, Plus } from 'lucide-react'
+import { FileText, Mail, Phone, Plug, Plus, Pencil } from 'lucide-react'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/db'
 import { PageHeader } from '@/components/dashboard/page-header'
@@ -31,6 +31,11 @@ export default async function ClientDetailPage({ params }: { params: { id: strin
         description={client.segment ?? 'Cliente'}
         action={
           <div className="flex gap-2">
+            <Button asChild variant="outline">
+              <Link href={`/clientes/${client.id}/editar`}>
+                <Pencil className="h-4 w-4" /> Editar
+              </Link>
+            </Button>
             <Button asChild variant="outline">
               <Link href={`/integracoes?clientId=${client.id}`}>
                 <Plug className="h-4 w-4" /> Conectar conta

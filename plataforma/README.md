@@ -56,7 +56,18 @@ npm run dev
 # → http://localhost:3000
 ```
 
-### Banco local rápido (Docker)
+### 🐳 Rodar tudo com Docker (um comando)
+
+Sobe app + PostgreSQL, aplica o schema e popula o seed automaticamente:
+
+```bash
+docker compose up --build
+# → http://localhost:3000  (login: admin@demo.com / demo1234)
+```
+
+Health check: `GET /api/health`.
+
+### Banco local rápido (sem Docker para a app)
 
 ```bash
 docker run --name reportia-db -e POSTGRES_PASSWORD=postgres \

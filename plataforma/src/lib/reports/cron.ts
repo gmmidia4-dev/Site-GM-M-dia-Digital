@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { generateReport } from './generate'
 import { deliverReport } from './deliver'
+import { computeNextRun } from './schedule'
 import type { ScheduleFrequency } from '@prisma/client'
 
 /** Valida o segredo do cron (Vercel envia Authorization: Bearer $CRON_SECRET). */
@@ -62,7 +63,7 @@ export async function runScheduled(req: NextRequest, freq: ScheduleFrequency) {
       await deliverReport(report.id, schedule.channels, schedule.recipients)
       await prisma.reportSchedule.update({
         where: { id: schedule.id },
-        data: { lastRunAt: new Date() },
+        data: { lastRunAt: new Date(), nextRunAt: computeNextRun(freq) },
       })
       results.push({ scheduleId: schedule.id, reportId: report.id, ok: true })
     } catch (err: any) {

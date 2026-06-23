@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { BarChart3, LayoutDashboard, Users, Plug, FileText, Settings, Sparkles } from 'lucide-react'
+import { BarChart3, LayoutDashboard, Users, Plug, FileText, CalendarClock, Settings, Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const nav = [
@@ -10,6 +10,7 @@ const nav = [
   { label: 'Clientes', href: '/clientes', icon: Users },
   { label: 'Integrações', href: '/integracoes', icon: Plug },
   { label: 'Relatórios', href: '/relatorios', icon: FileText },
+  { label: 'Agendamentos', href: '/agendamentos', icon: CalendarClock },
   { label: 'Configurações', href: '/configuracoes', icon: Settings },
 ]
 

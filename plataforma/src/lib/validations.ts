@@ -66,7 +66,17 @@ export const agencySchema = z.object({
   brandSecondary: z.string().regex(/^#([0-9a-fA-F]{6})$/, 'Hex inválido'),
 })
 
+export const userCreateSchema = z.object({
+  name: z.string().min(2, 'Informe o nome').max(120),
+  email: z.string().email('E-mail inválido'),
+  password: z.string().min(8, 'Mínimo de 8 caracteres').max(100),
+  role: z.enum(['ADMIN', 'MANAGER', 'CLIENT']),
+  // Para CLIENT: clientes que o usuário poderá visualizar
+  clientIds: z.array(z.string()).optional(),
+})
+
 export type RegisterInput = z.infer<typeof registerSchema>
 export type ClientInput = z.infer<typeof clientSchema>
 export type ReportInput = z.infer<typeof reportSchema>
 export type ScheduleInput = z.infer<typeof scheduleSchema>
+export type UserCreateInput = z.infer<typeof userCreateSchema>
