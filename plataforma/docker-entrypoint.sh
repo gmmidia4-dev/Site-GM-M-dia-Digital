@@ -1,8 +1,8 @@
 #!/bin/sh
 set -e
 
-echo "→ Sincronizando schema do banco (prisma db push)…"
-npx prisma db push --skip-generate
+echo "→ Aplicando migrations do banco (prisma migrate deploy)…"
+npx prisma migrate deploy
 
 if [ "$SEED" = "true" ]; then
   echo "→ Populando dados de demonstração (seed)…"

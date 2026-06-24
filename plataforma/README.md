@@ -8,6 +8,11 @@ em PDF, compartilhamento por link e envio por e-mail/WhatsApp.
 > Interface moderna no estilo Looker Studio / Databox / Reportei, responsiva, com **tema claro
 > e escuro**.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fgmmidia4-dev%2FSite-GM-M-dia-Digital&root-directory=plataforma&project-name=reportia&env=DATABASE_URL,NEXTAUTH_SECRET,NEXTAUTH_URL,NEXT_PUBLIC_APP_URL,INTEGRATION_ENCRYPTION_KEY,CRON_SECRET,DEMO_MODE&envDescription=Veja%20plataforma%2F.env.example&envLink=https%3A%2F%2Fgithub.com%2Fgmmidia4-dev%2FSite-GM-M-dia-Digital%2Fblob%2Fmain%2Fplataforma%2F.env.example)
+
+> O botão usa o branch **default** do repositório e Root Directory `plataforma`.
+> Passo a passo completo (inclusive via CLI): [`docs/DEPLOY.md`](docs/DEPLOY.md).
+
 ---
 
 ## ✨ Funcionalidades
